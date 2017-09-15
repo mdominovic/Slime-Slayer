@@ -11,14 +11,22 @@ public class LoadNewArea : MonoBehaviour {
 
 	private PlayerController thePlayer;
 
+	private int gos;
+
 	// Use this for initialization
 	void Start () {
 		thePlayer = FindObjectOfType<PlayerController> ();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		gos = GameObject.FindGameObjectsWithTag ("Enemy").Length;
+
+		if (gos <= 0) {
+			Destroy(GameObject.Find("prolaz"));
 		
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other)

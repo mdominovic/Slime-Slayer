@@ -22,6 +22,13 @@ public class PlayerController : MonoBehaviour {
 
 	public string startPoint;
 
+	public GameObject skillshot;
+
+	private bool shooting;
+	public float shootingTime;
+	private float shootingTimeCounter;
+
+
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
@@ -44,7 +51,7 @@ public class PlayerController : MonoBehaviour {
 
 		playerMoving = false;
 
-		if (!attacking) 
+		if (!attacking && !shooting) 
 		{			
 			
 			if (Input.GetAxisRaw ("Horizontal") > 0.5f || Input.GetAxisRaw ("Horizontal") < -0.5f) 
@@ -88,6 +95,33 @@ public class PlayerController : MonoBehaviour {
 				currentMoveSpeed = moveSpeed;
 			}
 
+			if (Input.GetKeyDown (KeyCode.E)) 
+			{
+				shootingTimeCounter = shootingTime;
+				shooting = true;
+				myRigidbody.velocity = Vector2.zero;
+				anim.SetBool ("Shoot", true);
+
+				GameObject newSkillshot = Instantiate (skillshot, transform.position, transform.rotation);
+				shooting = true;
+				if (lastMove.x > 0.5f) {
+					newSkillshot.GetComponent<Rigidbody2D> ().transform.Rotate (0, 0, 180);
+
+					newSkillshot.GetComponent<Rigidbody2D> ().AddRelativeForce (new Vector2 (-300f, 0f));
+				} else if (lastMove.x < -0.5f) {
+					newSkillshot.GetComponent<Rigidbody2D> ().transform.Rotate (0, 0, 0);
+					newSkillshot.GetComponent<Rigidbody2D> ().AddRelativeForce (new Vector2 (-300f, 0f));
+				} else if (lastMove.y > 0.5) {
+					newSkillshot.GetComponent<Rigidbody2D> ().transform.Rotate (0, 0, 270);
+
+					newSkillshot.GetComponent<Rigidbody2D> ().AddRelativeForce (new Vector2 (-300f, 0f));
+				} else {
+					newSkillshot.GetComponent<Rigidbody2D> ().transform.Rotate (0,0,90);
+					newSkillshot.GetComponent<Rigidbody2D> ().AddRelativeForce (new Vector2 (-300f, 0f));
+				}
+
+
+			}
 
 		}
 
@@ -102,11 +136,24 @@ public class PlayerController : MonoBehaviour {
 			anim.SetBool ("Attack", false);
 		}
 
+		if (shootingTimeCounter > 0) 
+		{
+			shootingTimeCounter -= Time.deltaTime;
+		}
+
+		if (shootingTimeCounter <= 0) 
+		{
+			shooting = false;
+			anim.SetBool ("Shoot", false);
+		}
+
 		anim.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
 		anim.SetFloat ("MoveY", Input.GetAxisRaw ("Vertical"));
 		anim.SetBool ("PlayerMoving", playerMoving);
 		anim.SetFloat ("LastMoveX", lastMove.x);
 		anim.SetFloat ("LastMoveY", lastMove.y);
+
+
 	
 	}
 }
