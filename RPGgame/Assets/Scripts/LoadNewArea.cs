@@ -10,12 +10,15 @@ public class LoadNewArea : MonoBehaviour {
 	public string exitPoint;
 
 	private PlayerController thePlayer;
+	private PlayerHealthManager Mana;
 
 	private int gos;
 
 	// Use this for initialization
 	void Start () {
 		thePlayer = FindObjectOfType<PlayerController> ();
+		Mana = FindObjectOfType<PlayerHealthManager> ();
+		Mana.SetMaxMana ();
 
 	}
 	

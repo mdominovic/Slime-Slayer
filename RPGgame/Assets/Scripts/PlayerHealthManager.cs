@@ -7,12 +7,16 @@ public class PlayerHealthManager : MonoBehaviour {
 	public int playerMaxHealth;
 	public int playerCurrentHealth;
 
+	public int playerMaxMana;
+	public int playerCurrentMana;
+
 	private SpriteRenderer playerSprite;
 
 	// Use this for initialization
 	void Start () {
 
 		playerCurrentHealth = playerMaxHealth;
+		playerCurrentMana = playerMaxMana;
 		playerSprite = GetComponent<SpriteRenderer> ();
 	}
 	
@@ -24,12 +28,19 @@ public class PlayerHealthManager : MonoBehaviour {
 			gameObject.SetActive (false);
 		}
 
+
+
 	}
 
 	public void HurtPlayer(int damageToGive)
 	{
 		playerCurrentHealth -= damageToGive;
 		StartCoroutine ("HurtColor");
+	}
+
+	public void TakeAwayMana(int manaToTake)
+	{
+		playerCurrentMana-= manaToTake;
 	}
 
 	IEnumerator HurtColor()
@@ -47,4 +58,12 @@ public class PlayerHealthManager : MonoBehaviour {
 		playerCurrentHealth = playerMaxHealth;
 	}
 
+	public void SetMaxMana()
+	{
+		playerCurrentMana = playerMaxMana;
+	}
+
+	public void ManaRegen(){
+		playerCurrentMana += (int)(1f * Time.deltaTime);
+	}
 }

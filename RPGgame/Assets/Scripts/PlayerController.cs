@@ -29,10 +29,14 @@ public class PlayerController : MonoBehaviour {
 	private float shootingTimeCounter;
 
 
+
+	private PlayerHealthManager plyr;
+
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
 		myRigidbody = GetComponent<Rigidbody2D> ();
+		plyr = FindObjectOfType<PlayerHealthManager>();
 
 		if (!playerExists) 
 		{
@@ -95,8 +99,10 @@ public class PlayerController : MonoBehaviour {
 				currentMoveSpeed = moveSpeed;
 			}
 
-			if (Input.GetKeyDown (KeyCode.E)) 
+			if ((Input.GetKeyDown (KeyCode.E)) && (plyr.playerCurrentMana > 9)) 
 			{
+				plyr.TakeAwayMana(10);
+
 				shootingTimeCounter = shootingTime;
 				shooting = true;
 				myRigidbody.velocity = Vector2.zero;
@@ -106,14 +112,12 @@ public class PlayerController : MonoBehaviour {
 				shooting = true;
 				if (lastMove.x > 0.5f) {
 					newSkillshot.GetComponent<Rigidbody2D> ().transform.Rotate (0, 0, 180);
-
 					newSkillshot.GetComponent<Rigidbody2D> ().AddRelativeForce (new Vector2 (-300f, 0f));
 				} else if (lastMove.x < -0.5f) {
 					newSkillshot.GetComponent<Rigidbody2D> ().transform.Rotate (0, 0, 0);
 					newSkillshot.GetComponent<Rigidbody2D> ().AddRelativeForce (new Vector2 (-300f, 0f));
 				} else if (lastMove.y > 0.5) {
 					newSkillshot.GetComponent<Rigidbody2D> ().transform.Rotate (0, 0, 270);
-
 					newSkillshot.GetComponent<Rigidbody2D> ().AddRelativeForce (new Vector2 (-300f, 0f));
 				} else {
 					newSkillshot.GetComponent<Rigidbody2D> ().transform.Rotate (0,0,90);
