@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour {
 	public float shootingTime;
 	private float shootingTimeCounter;
 
-
+	private int gos;
 
 	private PlayerHealthManager plyr;
 
@@ -157,6 +157,13 @@ public class PlayerController : MonoBehaviour {
 		anim.SetFloat ("LastMoveX", lastMove.x);
 		anim.SetFloat ("LastMoveY", lastMove.y);
 
+
+		gos = GameObject.FindGameObjectsWithTag ("Enemy").Length;
+
+		if (gos <= 0) {
+			Destroy(GameObject.Find("prolaz"));
+
+		}
 
 	
 	}

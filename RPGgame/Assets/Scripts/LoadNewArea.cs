@@ -12,7 +12,8 @@ public class LoadNewArea : MonoBehaviour {
 	private PlayerController thePlayer;
 	private PlayerHealthManager Mana;
 
-	private int gos;
+
+	private float wait = 2;
 
 	// Use this for initialization
 	void Start () {
@@ -24,12 +25,14 @@ public class LoadNewArea : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		gos = GameObject.FindGameObjectsWithTag ("Enemy").Length;
-
-		if (gos <= 0) {
-			Destroy(GameObject.Find("prolaz"));
 		
-		}
+
+		if (Mana.playerCurrentHealth <= 0) {
+			wait -= Time.deltaTime;
+			if (wait < 0) {
+				SceneManager.LoadScene ("mainmenu");
+			}
+		} 
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
