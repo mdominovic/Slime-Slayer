@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour {
 
@@ -13,6 +14,8 @@ public class UIManager : MonoBehaviour {
 	public Text MPText;
 
 	private static bool UIExists;
+
+	public GameObject canvasObject;
 
 	// Use this for initialization
 	void Start () {
@@ -36,5 +39,27 @@ public class UIManager : MonoBehaviour {
 		manaBar.maxValue = playerHealth.playerMaxMana;
 		manaBar.value = playerHealth.playerCurrentMana;
 		MPText.text = "MP: " + playerHealth.playerCurrentMana + "/" + playerHealth.playerMaxMana;
+
+
+		Scene currentScene = SceneManager.GetActiveScene ();
+		string sceneName = currentScene.name;
+
+		if (sceneName == "mainmenu") {
+			MakeDeActive ();
+		} else {
+			MakeActive ();
+		}
+
+	}
+
+
+	public void MakeActive()
+	{
+		canvasObject.SetActive(true);
+	}
+
+	public void MakeDeActive()
+	{
+		canvasObject.SetActive(false);
 	}
 }

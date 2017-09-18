@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -32,11 +33,15 @@ public class PlayerController : MonoBehaviour {
 
 	private PlayerHealthManager plyr;
 
+
+
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator> ();
 		myRigidbody = GetComponent<Rigidbody2D> ();
 		plyr = FindObjectOfType<PlayerHealthManager>();
+
+
 
 		if (!playerExists) 
 		{
@@ -46,6 +51,8 @@ public class PlayerController : MonoBehaviour {
 		{
 			Destroy (gameObject);
 		}
+
+
 
 
 	}
@@ -167,4 +174,5 @@ public class PlayerController : MonoBehaviour {
 
 	
 	}
+
 }
