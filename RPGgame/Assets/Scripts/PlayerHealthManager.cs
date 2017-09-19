@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealthManager : MonoBehaviour {
 
@@ -11,6 +12,9 @@ public class PlayerHealthManager : MonoBehaviour {
 	public int playerCurrentMana;
 
 	private SpriteRenderer playerSprite;
+
+	private float timer;
+	private float wait = 2f;
 
 	// Use this for initialization
 	void Start () {
@@ -23,12 +27,18 @@ public class PlayerHealthManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (playerCurrentHealth <= 0) 
+
+
+		if (playerCurrentHealth < 1) 
 		{
 			gameObject.SetActive (false);
+			wait -= Time.deltaTime;
+			if (wait <= 0f) {
+				SceneManager.LoadScene ("mainmenu");
+			}
 		}
 
-
+			
 
 	}
 

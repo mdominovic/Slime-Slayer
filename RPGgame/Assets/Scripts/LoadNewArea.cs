@@ -13,13 +13,11 @@ public class LoadNewArea : MonoBehaviour {
 	private PlayerHealthManager Mana;
 
 
-	private float wait = 2;
+
 
 	// Use this for initialization
 	void Start () {
 		thePlayer = FindObjectOfType<PlayerController> ();
-		Mana = FindObjectOfType<PlayerHealthManager> ();
-		Mana.SetMaxMana ();
 
 	}
 	
@@ -27,12 +25,7 @@ public class LoadNewArea : MonoBehaviour {
 	void Update () {
 		
 
-		if (Mana.playerCurrentHealth <= 0) {
-			wait -= Time.deltaTime;
-			if (wait < 0) {
-				SceneManager.LoadScene ("mainmenu");
-			}
-		} 
+
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
@@ -43,6 +36,10 @@ public class LoadNewArea : MonoBehaviour {
 			SceneManager.LoadScene (levelToLoad);
 			thePlayer.startPoint = exitPoint;
 		}
+	}
+
+	public void ChangeScene (int scene) {
+		Application.LoadLevel (scene);
 	}
 
 }

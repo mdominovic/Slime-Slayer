@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 
-
+		lastMove = new Vector2 (0, -1f);
 
 	}
 	

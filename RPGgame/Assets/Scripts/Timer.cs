@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour {
 
@@ -9,14 +10,25 @@ public class Timer : MonoBehaviour {
 	private float startTime;
 	private bool stopped = false;
 
+
 	// Use this for initialization
 	void Start () {
 		startTime = Time.time;
+
+		Scene currentScene = SceneManager.GetActiveScene ();
+		string sceneName = currentScene.name;
+
+		if (sceneName != "mainmenu" || sceneName != "endgame") {
+			stopped = true;
+		}
+
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+
 
 		if (FindObjectOfType<PlayerController>()) {
 			stopped = false;
@@ -40,5 +52,6 @@ public class Timer : MonoBehaviour {
 		stopped = true;
 		timerText.color = Color.yellow;
 	}
+
 
 }

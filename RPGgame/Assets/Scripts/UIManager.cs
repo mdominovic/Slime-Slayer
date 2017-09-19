@@ -44,7 +44,7 @@ public class UIManager : MonoBehaviour {
 		Scene currentScene = SceneManager.GetActiveScene ();
 		string sceneName = currentScene.name;
 
-		if (sceneName == "mainmenu") {
+		if (sceneName == "mainmenu" || sceneName == "endgame") {
 			MakeDeActive ();
 		} else {
 			MakeActive ();
