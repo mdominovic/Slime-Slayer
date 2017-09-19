@@ -18,7 +18,9 @@ public class Timer : MonoBehaviour {
 		Scene currentScene = SceneManager.GetActiveScene ();
 		string sceneName = currentScene.name;
 
-		if (sceneName != "mainmenu" || sceneName != "endgame") {
+		DontDestroyOnLoad(transform.gameObject);
+
+		if (sceneName == "mainmenu" || sceneName == "endgame") {
 			stopped = true;
 		}
 
@@ -38,7 +40,6 @@ public class Timer : MonoBehaviour {
 			string seconds = (t % 60).ToString ("f2");
 
 			timerText.text = minutes + ":" + seconds;
-
 		} else {
 			Stop ();
 		}

@@ -16,26 +16,32 @@ public class PlayerHealthManager : MonoBehaviour {
 	private float timer;
 	private float wait = 2f;
 
+	private SFXManager sfxMan;
+
 	// Use this for initialization
 	void Start () {
 
 		playerCurrentHealth = playerMaxHealth;
 		playerCurrentMana = playerMaxMana;
 		playerSprite = GetComponent<SpriteRenderer> ();
+
+		sfxMan = FindObjectOfType<SFXManager> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+		Scene currentScene = SceneManager.GetActiveScene ();
+		string sceneName = currentScene.name;
 
+		if (sceneName == "endgame") {
+			gameObject.SetActive (false);
+		}
 
 		if (playerCurrentHealth < 1) 
 		{
+			sfxMan.playerDead.Play ();
 			gameObject.SetActive (false);
-			wait -= Time.deltaTime;
-			if (wait <= 0f) {
-				SceneManager.LoadScene ("mainmenu");
-			}
 		}
 
 			
@@ -46,6 +52,8 @@ public class PlayerHealthManager : MonoBehaviour {
 	{
 		playerCurrentHealth -= damageToGive;
 		StartCoroutine ("HurtColor");
+
+		sfxMan.playerHurt.Play ();
 	}
 
 	public void TakeAwayMana(int manaToTake)

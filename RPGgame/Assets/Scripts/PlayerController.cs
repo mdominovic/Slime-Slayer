@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour {
 
 	private PlayerHealthManager plyr;
 
+	private SFXManager sfxMan;
+
 
 
 	// Use this for initialization
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour {
 		anim = GetComponent<Animator> ();
 		myRigidbody = GetComponent<Rigidbody2D> ();
 		plyr = FindObjectOfType<PlayerHealthManager>();
+		sfxMan = FindObjectOfType<SFXManager> ();
 
 
 
@@ -98,6 +101,8 @@ public class PlayerController : MonoBehaviour {
 				attacking = true;
 				myRigidbody.velocity = Vector2.zero;
 				anim.SetBool ("Attack", true);
+
+				sfxMan.playerAttack.Play ();
 			}
 
 			if (Mathf.Abs (Input.GetAxisRaw ("Horizontal")) > 0.5f && Mathf.Abs (Input.GetAxisRaw ("Vertical")) > 0.5f) {
@@ -109,6 +114,7 @@ public class PlayerController : MonoBehaviour {
 			if ((Input.GetKeyDown (KeyCode.E)) && (plyr.playerCurrentMana > 9)) 
 			{
 				plyr.TakeAwayMana(10);
+				sfxMan.playerShoot.Play ();
 
 				shootingTimeCounter = shootingTime;
 				shooting = true;

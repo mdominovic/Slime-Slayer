@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerStartPoint : MonoBehaviour {
 
 	private PlayerController thePlayer;
+	private PlayerHealthManager Mana;
 
 	public Vector2 startDirection;
 
@@ -13,11 +14,13 @@ public class PlayerStartPoint : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		thePlayer = FindObjectOfType<PlayerController>();
+		Mana = FindObjectOfType<PlayerHealthManager>();
 
 		if (thePlayer.startPoint == pointName) 
 		{
 			thePlayer.transform.position = transform.position;
 			thePlayer.lastMove = startDirection;
+			Mana.SetMaxMana ();
 		}
 
 	}
