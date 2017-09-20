@@ -15,8 +15,13 @@ public class GameController : MonoBehaviour {
 
 	private Vector3 playerStartPoint;
 
+	private ScoreManager theScoreManager;
+
+
 	// Use this for initialization
 	void Start () {
+		theScoreManager = FindObjectOfType<ScoreManager> ();
+
 		Scene currentScene = SceneManager.GetActiveScene ();
 		string sceneName = currentScene.name;
 
@@ -61,6 +66,10 @@ public class GameController : MonoBehaviour {
 		thePlayer.transform.position = new Vector3(-7.31f,0,0);
 		health.playerCurrentHealth = 100;
 		thePlayer.gameObject.SetActive(true);
+		theScoreManager.scoreCount = 0;
+		theScoreManager.scoreIncreasing = true;
+
+
 	}
 
 	public void NewGame ()

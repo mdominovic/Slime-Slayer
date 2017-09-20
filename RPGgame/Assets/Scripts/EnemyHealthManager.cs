@@ -7,9 +7,11 @@ public class EnemyHealthManager : MonoBehaviour {
 	public int MaxHealth;
 	public int CurrentHealth;
 
+	private ScoreManager theScoreManager;
+
 	// Use this for initialization
 	void Start () {
-
+		theScoreManager = FindObjectOfType<ScoreManager> ();
 		CurrentHealth = MaxHealth;
 
 	}
@@ -19,8 +21,8 @@ public class EnemyHealthManager : MonoBehaviour {
 
 		if (CurrentHealth <= 0) 
 		{
+			theScoreManager.scoreCount += 20;
 			Destroy (gameObject);
-
 		}
 
 	}

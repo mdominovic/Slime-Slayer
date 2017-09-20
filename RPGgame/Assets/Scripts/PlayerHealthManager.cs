@@ -20,6 +20,8 @@ public class PlayerHealthManager : MonoBehaviour {
 
 	private SFXManager sfxMan;
 
+	private ScoreManager theScoreManager;
+
 	// Use this for initialization
 	void Start () {
 
@@ -28,6 +30,8 @@ public class PlayerHealthManager : MonoBehaviour {
 		playerSprite = GetComponent<SpriteRenderer> ();
 
 		sfxMan = FindObjectOfType<SFXManager> ();
+
+		theScoreManager = FindObjectOfType<ScoreManager> ();
 	}
 	
 	// Update is called once per frame
@@ -49,6 +53,7 @@ public class PlayerHealthManager : MonoBehaviour {
 
 		if (playerCurrentHealth < 1) {
 			gameCtrl.RestartGame ();
+			theScoreManager.scoreIncreasing = false;
 		}
 			
 
@@ -60,6 +65,7 @@ public class PlayerHealthManager : MonoBehaviour {
 		//StartCoroutine ("HurtColor");
 
 		sfxMan.playerHurt.Play ();
+
 	}
 
 	public void TakeAwayMana(int manaToTake)
@@ -76,7 +82,6 @@ public class PlayerHealthManager : MonoBehaviour {
 			yield return new WaitForSeconds(.1f);
 
 		}
-		GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,1f);
 	}
 
 	public void SetMaxHealth()
