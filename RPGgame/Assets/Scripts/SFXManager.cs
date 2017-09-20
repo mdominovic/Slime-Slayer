@@ -13,6 +13,7 @@ public class SFXManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		if (!sfxmanExists) 
 		{
 			sfxmanExists = true;

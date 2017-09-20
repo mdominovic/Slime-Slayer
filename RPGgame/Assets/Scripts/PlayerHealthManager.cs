@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealthManager : MonoBehaviour {
 
+	public GameController gameCtrl;
+
 	public int playerMaxHealth;
 	public int playerCurrentHealth;
 
@@ -30,7 +32,7 @@ public class PlayerHealthManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		/*
 		Scene currentScene = SceneManager.GetActiveScene ();
 		string sceneName = currentScene.name;
 
@@ -43,7 +45,11 @@ public class PlayerHealthManager : MonoBehaviour {
 			sfxMan.playerDead.Play ();
 			gameObject.SetActive (false);
 		}
+			*/
 
+		if (playerCurrentHealth < 1) {
+			gameCtrl.RestartGame ();
+		}
 			
 
 	}
@@ -51,7 +57,7 @@ public class PlayerHealthManager : MonoBehaviour {
 	public void HurtPlayer(int damageToGive)
 	{
 		playerCurrentHealth -= damageToGive;
-		StartCoroutine ("HurtColor");
+		//StartCoroutine ("HurtColor");
 
 		sfxMan.playerHurt.Play ();
 	}
@@ -68,7 +74,9 @@ public class PlayerHealthManager : MonoBehaviour {
 			yield return new WaitForSeconds(.1f);
 			GetComponent<SpriteRenderer>().color = Color.white;
 			yield return new WaitForSeconds(.1f);
+
 		}
+		GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,1f);
 	}
 
 	public void SetMaxHealth()

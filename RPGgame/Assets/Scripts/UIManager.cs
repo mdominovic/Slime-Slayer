@@ -19,8 +19,11 @@ public class UIManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-		if (!UIExists) 
+
+		Scene currentScene = SceneManager.GetActiveScene ();
+		string sceneName = currentScene.name;
+
+		if (!UIExists && sceneName != "endgame" && sceneName != "mainmenu") 
 		{
 			UIExists = true;
 			DontDestroyOnLoad (transform.gameObject);
@@ -39,16 +42,6 @@ public class UIManager : MonoBehaviour {
 		manaBar.maxValue = playerHealth.playerMaxMana;
 		manaBar.value = playerHealth.playerCurrentMana;
 		MPText.text = "MP: " + playerHealth.playerCurrentMana + "/" + playerHealth.playerMaxMana;
-
-
-		Scene currentScene = SceneManager.GetActiveScene ();
-		string sceneName = currentScene.name;
-
-		if (sceneName == "mainmenu" || sceneName == "endgame") {
-			MakeDeActive ();
-		} else {
-			MakeActive ();
-		}
 
 	}
 

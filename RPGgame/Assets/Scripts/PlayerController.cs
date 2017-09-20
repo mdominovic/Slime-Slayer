@@ -44,6 +44,10 @@ public class PlayerController : MonoBehaviour {
 		plyr = FindObjectOfType<PlayerHealthManager>();
 		sfxMan = FindObjectOfType<SFXManager> ();
 
+		gameObject.transform.position = new Vector3(-7.32f,0,0);
+
+		Scene currentScene = SceneManager.GetActiveScene ();
+		string sceneName = currentScene.name;
 
 
 		if (!playerExists) 
