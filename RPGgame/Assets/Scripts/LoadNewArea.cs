@@ -26,7 +26,6 @@ public class LoadNewArea : MonoBehaviour {
 	void Update () {
 		
 
-
 	}
 
 	void OnTriggerEnter2D(Collider2D other)

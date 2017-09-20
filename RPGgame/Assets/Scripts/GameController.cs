@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour {
 	private ScoreManager theScoreManager;
 
 
+
 	// Use this for initialization
 	void Start () {
 		theScoreManager = FindObjectOfType<ScoreManager> ();
@@ -47,7 +48,14 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+		Scene currentScene = SceneManager.GetActiveScene ();
+		string sceneName = currentScene.name;
+
+		if (sceneName == "endgame") {
+			theScoreManager.scoreIncreasing = false;
+		}
+
 	}
 
 	public void RestartGame()
@@ -63,7 +71,8 @@ public class GameController : MonoBehaviour {
 	{
 		deathScreen.gameObject.SetActive(false);
 		SceneManager.LoadScene ("level1");
-		thePlayer.transform.position = new Vector3(-7.31f,0,0);
+		thePlayer.transform.position = new Vector3(-7f,0.25f,0);
+		thePlayer.lastMove = new Vector2 (0, -1f);
 		health.playerCurrentHealth = 100;
 		thePlayer.gameObject.SetActive(true);
 		theScoreManager.scoreCount = 0;
@@ -75,7 +84,8 @@ public class GameController : MonoBehaviour {
 	public void NewGame ()
 	{
 		deathScreen.gameObject.SetActive(false);
-		thePlayer.transform.position = new Vector3(-7.31f,0,0);
+		thePlayer.transform.position = new Vector3(-7.81f,0,0);
+		thePlayer.lastMove = new Vector2 (0, -1f);
 		health.playerCurrentHealth = 100;
 		thePlayer.gameObject.SetActive(true);
 	}

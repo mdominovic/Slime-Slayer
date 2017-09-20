@@ -23,6 +23,10 @@ public class PlayerStartPoint : MonoBehaviour {
 			Mana.SetMaxMana ();
 		}
 
+		if (pointName == "spawn") {
+			thePlayer.lastMove = new Vector2 (0, -1f);
+		}
+
 	}
 	
 	// Update is called once per frame
