@@ -17,19 +17,17 @@ public class GameController : MonoBehaviour {
 
 	private ScoreManager theScoreManager;
 
+	private SpriteRenderer playerSprite;
+
 
 
 	// Use this for initialization
 	void Start () {
+		playerSprite = thePlayer.GetComponent<SpriteRenderer> ();
 		theScoreManager = FindObjectOfType<ScoreManager> ();
 
 		Scene currentScene = SceneManager.GetActiveScene ();
 		string sceneName = currentScene.name;
-
-		/*
-		if (sceneName == "level1" && FindObjectOfType<PlayerController> () == null) {
-			Reset ();
-		}*/
 
 		if (!gameCtrlExists) 
 		{
@@ -75,6 +73,7 @@ public class GameController : MonoBehaviour {
 		thePlayer.lastMove = new Vector2 (0, -1f);
 		health.playerCurrentHealth = 100;
 		thePlayer.gameObject.SetActive(true);
+		playerSprite.GetComponent<SpriteRenderer>().color = Color.white;
 		theScoreManager.scoreCount = 0;
 		theScoreManager.scoreIncreasing = true;
 
@@ -87,6 +86,14 @@ public class GameController : MonoBehaviour {
 		thePlayer.transform.position = new Vector3(-7.81f,0,0);
 		thePlayer.lastMove = new Vector2 (0, -1f);
 		health.playerCurrentHealth = 100;
+		thePlayer.gameObject.SetActive(true);
+	}
+
+	public void NextLevel ()
+	{
+		deathScreen.gameObject.SetActive(false);
+		thePlayer.transform.position = new Vector3(-7.81f,0,0);
+		thePlayer.lastMove = new Vector2 (0, -1f);
 		thePlayer.gameObject.SetActive(true);
 	}
 

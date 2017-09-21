@@ -36,24 +36,11 @@ public class PlayerHealthManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		/*
-		Scene currentScene = SceneManager.GetActiveScene ();
-		string sceneName = currentScene.name;
-
-		if (sceneName == "endgame") {
-			gameObject.SetActive (false);
-		}
-
-		if (playerCurrentHealth < 1) 
-		{
-			sfxMan.playerDead.Play ();
-			gameObject.SetActive (false);
-		}
-			*/
 
 		if (playerCurrentHealth < 1) {
 			gameCtrl.RestartGame ();
 			theScoreManager.scoreIncreasing = false;
+			sfxMan.playerDead.Play ();
 		}
 			
 
@@ -62,7 +49,7 @@ public class PlayerHealthManager : MonoBehaviour {
 	public void HurtPlayer(int damageToGive)
 	{
 		playerCurrentHealth -= damageToGive;
-		//StartCoroutine ("HurtColor");
+		StartCoroutine ("HurtColor");
 
 		sfxMan.playerHurt.Play ();
 
@@ -82,6 +69,7 @@ public class PlayerHealthManager : MonoBehaviour {
 			yield return new WaitForSeconds(.1f);
 
 		}
+
 	}
 
 	public void SetMaxHealth()

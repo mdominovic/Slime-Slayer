@@ -35,16 +35,10 @@ public class LoadNewArea : MonoBehaviour {
 		{
 			SceneManager.LoadScene (levelToLoad);
 			thePlayer.startPoint = exitPoint;
-			FindObjectOfType<GameController>().NewGame();
+			FindObjectOfType<GameController>().NextLevel();
 		}
 
 
-		/*
-		if (levelToLoad == "endgame") {
-			thePlayer.gameObject.SetActive (false);
-			finished = true;
-
-		}*/
 	}
 
 	public void ChangeScene (string scene) {

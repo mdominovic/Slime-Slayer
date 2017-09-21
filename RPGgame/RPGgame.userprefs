@@ -1,21 +1,23 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LoadNewArea.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Timer.cs">
     <Files>
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LoadNewArea.cs" Line="66" Column="3" />
-      <File FileName="Assets\Scripts\PlayerHealthManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameController.cs" Line="92" Column="2" />
+      <File FileName="Assets\Scripts\PlayerHealthManager.cs" Line="38" Column="18" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="56" Column="7" />
+      <File FileName="Assets\Scripts\GameController.cs" Line="30" Column="40" />
+      <File FileName="Assets\Scripts\LoadNewArea.cs" Line="56" Column="2" />
+      <File FileName="Assets\Scripts\UIManager.cs" Line="40" Column="52" />
       <File FileName="Assets\Scripts\DeathMenu.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Spawner.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\FloatingNumbers.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PlayerStartPoint.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ScoreManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ScoreManager.cs" Line="55" Column="3" />
       <File FileName="Assets\Scripts\HurtEnemy.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\DestroyOverTime.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\EnemyHealthManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\ShowScore.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\HurtPlayer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Timer.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
