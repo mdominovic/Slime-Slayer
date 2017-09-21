@@ -59,4 +59,9 @@ public class LoadNewArea : MonoBehaviour {
 
 
 	}*/
+
+	public void QuitGame()
+	{
+		Application.Quit();
+	}
 }
